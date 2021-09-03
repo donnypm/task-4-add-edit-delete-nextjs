@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import FormList from "../components/formlist";
 import data from "../data-dummy/data.json";
 import Header from "../components/header";
+import list from "../components/list";
 
 export default function Home() {
   const [formList, setFormList] = useState(data);
@@ -68,6 +69,7 @@ export default function Home() {
       ];
     }
 
+    setIsUpdate({ id: null, status: false });
     setFormList(copy);
     setInputTitle("");
     setInputQuantity("");
@@ -132,7 +134,7 @@ export default function Home() {
         </form>
       </div>
       <Header />
-      <FormList handleEdit={handleEdit} formList={formList} />
+      <FormList list={list} handleEdit={handleEdit} formList={formList} />
     </div>
   );
 }
