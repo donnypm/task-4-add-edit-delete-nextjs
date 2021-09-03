@@ -9,10 +9,24 @@ import Header from "../components/header";
 
 export default function Home() {
   const [formList, setFormList] = useState(data);
-  const [userInput, setUserInput] = useState("");
 
-  const handleChange = (e) => {
-    setUserInput(e.currentTarget.value);
+  const [isUpdate, setIsUpdate] = useState({ id: null, status: false });
+
+  const [userInput, setUserInput] = useState("");
+  const [inputTitle, setInputTitle] = useState("");
+  const [inputQuantity, setInputQuantity] = useState("");
+  const [inputPrice, setInputPrice] = useState("");
+
+  const handleChangeTitle = (e) => {
+    setInputTitle(e.currentTarget.value);
+  };
+
+  const handleChangeQuantity = (e) => {
+    setInputQuantity(e.currentTarget.value);
+  };
+
+  const handleChangePrice = (e) => {
+    setInputPrice(e.currentTarget.value);
   };
 
   const handleSubmit = (e) => {
@@ -23,16 +37,52 @@ export default function Home() {
 
   const addData = (userInput) => {
     let copy = [...formList];
-    copy = [
-      ...copy,
-      {
-        id: formList.length + 1,
-        title: userInput.title,
-        quantity: userInput.quantity,
-        price: userInput.price,
-      },
-    ];
+
+    if (inputTitle.title === "") {
+      return false;
+    }
+    if (inputQuantity.quantity === "") {
+      return false;
+    }
+    if (inputPrice.price === "") {
+      return false;
+    }
+
+    if (isUpdate.status) {
+      copy.forEach((formList) => {
+        if (formList.id === isUpdate.id) {
+          formList.title = inputTitle.title;
+          formList.quantity = inputQuantity.quantity;
+          formList.price = inputPrice.price;
+        }
+      });
+    } else {
+      copy = [
+        ...copy,
+        {
+          id: formList.length + 1,
+          title: inputTitle,
+          quantity: inputQuantity,
+          price: inputPrice,
+        },
+      ];
+    }
+
     setFormList(copy);
+    setInputTitle("");
+    setInputQuantity("");
+    setInputPrice("");
+  };
+
+  const handleEdit = (id) => {
+    let copy = [...formList];
+    let foundData = copy.find((formList) => formList.id === id);
+    setFormList({
+      title: foundData.title,
+      quantity: foundData.quantity,
+      price: foundData.price,
+    });
+    setIsUpdate({ id: id, status: true });
   };
 
   return (
@@ -52,8 +102,8 @@ export default function Home() {
               name="title"
               placeholder="Title"
               className="input"
-              onChange={handleChange}
-              value={userInput.title}
+              onChange={handleChangeTitle}
+              value={inputTitle}
             />
           </p>
           <p>
@@ -62,8 +112,8 @@ export default function Home() {
               name="quantity"
               placeholder="Quantity"
               className="input"
-              onChange={handleChange}
-              value={userInput.quantity}
+              onChange={handleChangeQuantity}
+              value={inputQuantity}
             />
           </p>
           <p>
@@ -72,8 +122,8 @@ export default function Home() {
               name="price"
               placeholder="Price"
               className="input"
-              onChange={handleChange}
-              value={userInput.price}
+              onChange={handleChangePrice}
+              value={inputPrice}
             />
           </p>
           <button type="button" onClick={handleSubmit} className="button">
@@ -82,7 +132,7 @@ export default function Home() {
         </form>
       </div>
       <Header />
-      <FormList formList={formList} />
+      <FormList handleEdit={handleEdit} formList={formList} />
     </div>
   );
 }
