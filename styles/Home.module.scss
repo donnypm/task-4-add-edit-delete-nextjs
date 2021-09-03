@@ -1,0 +1,13 @@
+$bg-color: #82c0e1;
+$font-white: white;
+$font-blue: #82c0e1;
+
+.bgh1 {
+  background-color: $bg-color;
+  color: $font-white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60px;
+  padding: 20px;
+}
