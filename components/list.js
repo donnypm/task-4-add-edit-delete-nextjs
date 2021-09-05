@@ -1,8 +1,7 @@
 import React from "react";
-import FormList from "./formlist";
 
 const List = (props) => {
-  const { list, handleEdit } = props;
+  const { list, handleEdit, handleDelete } = props;
   return (
     <div>
       <div className="list">
@@ -10,8 +9,8 @@ const List = (props) => {
         {list.quantity} <br />
         {list.price}
         <div className="button-list">
-          <button onClick={() => handleEdit(FormList.id)}>Edit</button>
-          <button>Delete</button>
+          <button onClick={() => handleEdit(list)}>Edit</button>
+          <button onClick={() => handleDelete(list)}>Delete</button>
         </div>
       </div>
       <hr />
