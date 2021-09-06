@@ -2,6 +2,8 @@
 
 $bg-color: #82c0e1;
 $font-fam: "Arial";
+$height-btn-action: 30px;
+$border-radius: 8px;
 
 html,
 body {
@@ -53,6 +55,7 @@ a {
   font-size: 16px;
   width: 400px;
   height: 30px;
+  cursor: pointer;
 }
 
 .h1header {
@@ -67,4 +70,26 @@ a {
 .button-list {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  width: 140px;
+}
+
+.button-edit {
+  background-color: $bg-color;
+  height: $height-btn-action;
+  width: 50px;
+  border-radius: $border-radius;
+  border: none;
+  cursor: pointer;
+}
+
+.button-delete {
+  color: #f6f6f6;
+  background-color: #c05662;
+  height: $height-btn-action;
+  width: 70px;
+  border-radius: $border-radius;
+  border: none;
+  cursor: pointer;
 }

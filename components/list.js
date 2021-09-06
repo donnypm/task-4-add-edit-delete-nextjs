@@ -9,8 +9,12 @@ const List = (props) => {
         {list.quantity} <br />
         {list.price}
         <div className="button-list">
-          <button onClick={() => handleEdit(list)}>Edit</button>
-          <button onClick={() => handleDelete(list)}>Delete</button>
+          <button onClick={() => handleEdit(list)} className="button-edit">
+            Edit
+          </button>
+          <button onClick={() => handleDelete(list)} className="button-delete">
+            Delete
+          </button>
         </div>
       </div>
       <hr />

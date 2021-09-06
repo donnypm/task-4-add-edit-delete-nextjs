@@ -29,7 +29,6 @@ export default function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Oke Bisa");
 
     if (
       (userInput.title === "",
@@ -49,6 +48,7 @@ export default function Home() {
           list.price = userInput.price;
         }
       });
+      alert("Berhasil Edit Data");
     } else {
       data.push({
         id: formList.length + 1,
@@ -56,6 +56,7 @@ export default function Home() {
         quantity: userInput.quantity,
         price: userInput.price,
       });
+      alert("Berhasil Tambah Data");
     }
 
     setFormList(data);
