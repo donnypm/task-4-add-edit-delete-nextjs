@@ -11,6 +11,8 @@ import list from "../components/list";
 export default function Home() {
   const [formList, setFormList] = useState(data);
 
+  const [isUpdate, setIsUpdate] = useState({ list: null, status: false });
+
   const [userInput, setUserInput] = useState("");
   const [inputTitle, setInputTitle] = useState("");
   const [inputQuantity, setInputQuantity] = useState("");
@@ -34,13 +36,15 @@ export default function Home() {
       return false;
     }
 
-    if ((inputTitle !== "", inputQuantity !== "", inputPrice !== "")) {
-      addData();
-      alert("TAMBAH");
-    } else {
+    if (isUpdate.status) {
       updateData();
-      alert("UPDATE");
+      alert("Update");
+    } else {
+      addData();
+      alert("Tambah");
     }
+
+    setIsUpdate({ list: null, status: true });
     setUserInput("");
   };
 
@@ -59,9 +63,10 @@ export default function Home() {
     setInputTitle("");
     setInputQuantity("");
     setInputPrice("");
+    console.log(add);
   };
 
-  const updateData = (list) => {
+  const updateData = () => {
     let update = formList.filter((formList) => formList !== list);
     update = [
       ...update,
@@ -76,6 +81,7 @@ export default function Home() {
     setInputTitle("");
     setInputQuantity("");
     setInputPrice("");
+    console.log(update);
   };
 
   const handleEdit = (list) => {
