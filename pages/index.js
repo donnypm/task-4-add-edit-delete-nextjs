@@ -58,7 +58,7 @@ export default function Home() {
       });
       alert("Berhasil Tambah Data");
     }
-
+    setIsUpdate({ id: null, status: false });
     setFormList(data);
     setUserInput({ title: "", quantity: "", price: "" });
   };
