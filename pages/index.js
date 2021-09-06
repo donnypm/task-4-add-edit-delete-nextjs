@@ -7,92 +7,75 @@ import FormList from "../components/formlist";
 import data from "../data-dummy/data.json";
 import Header from "../components/header";
 import list from "../components/list";
+import List from "../components/list";
+import { uid } from "uid";
 
 export default function Home() {
   const [formList, setFormList] = useState(data);
 
-  const [isUpdate, setIsUpdate] = useState({ list: null, status: false });
+  const [isUpdate, setIsUpdate] = useState({ id: null, status: false });
 
-  const [userInput, setUserInput] = useState("");
-  const [inputTitle, setInputTitle] = useState("");
-  const [inputQuantity, setInputQuantity] = useState("");
-  const [inputPrice, setInputPrice] = useState("");
+  const [userInput, setUserInput] = useState({
+    title: "",
+    quantity: "",
+    price: "",
+  });
 
-  const handleChangeTitle = (e) => {
-    setInputTitle(e.currentTarget.value);
-  };
-
-  const handleChangeQuantity = (e) => {
-    setInputQuantity(e.currentTarget.value);
-  };
-
-  const handleChangePrice = (e) => {
-    setInputPrice(e.currentTarget.value);
+  const handleChange = (e) => {
+    let data = { ...userInput };
+    data[e.target.name] = e.target.value;
+    setUserInput(data);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if ((inputTitle === "", inputQuantity === "", inputPrice === "")) {
+    alert("Oke Bisa");
+
+    if (
+      (userInput.title === "",
+      userInput.quantity === "",
+      userInput.price === "")
+    ) {
       return false;
     }
 
+    let data = [...formList];
+
     if (isUpdate.status) {
-      updateData();
-      alert("Update");
+      data.forEach((list) => {
+        if (list.id === isUpdate.id) {
+          list.title = userInput.title;
+          list.quantity = userInput.quantity;
+          list.price = userInput.price;
+        }
+      });
     } else {
-      addData();
-      alert("Tambah");
+      data.push({
+        id: formList.length + 1,
+        title: userInput.title,
+        quantity: userInput.quantity,
+        price: userInput.price,
+      });
     }
 
-    setIsUpdate({ list: null, status: true });
-    setUserInput("");
-  };
-
-  const addData = () => {
-    let add = [...formList];
-    add = [
-      ...add,
-      {
-        id: formList.length + 1,
-        title: inputTitle,
-        quantity: inputQuantity,
-        price: inputPrice,
-      },
-    ];
-    setFormList(add);
-    setInputTitle("");
-    setInputQuantity("");
-    setInputPrice("");
-    console.log(add);
-  };
-
-  const updateData = () => {
-    let update = formList.filter((formList) => formList !== list);
-    update = [
-      ...update,
-      {
-        id: formList.length + 1,
-        title: inputTitle,
-        quantity: inputQuantity,
-        price: inputPrice,
-      },
-    ];
-    setFormList(update);
-    setInputTitle("");
-    setInputQuantity("");
-    setInputPrice("");
-    console.log(update);
+    setFormList(data);
+    setUserInput({ title: "", quantity: "", price: "" });
   };
 
   const handleEdit = (list) => {
-    setInputTitle(list.title);
-    setInputQuantity(list.quantity);
-    setInputPrice(list.price);
+    setUserInput({
+      title: list.title,
+      quantity: list.quantity,
+      price: list.price,
+    });
+    setIsUpdate({ id: list.id, status: true });
+    console.log(list.id);
   };
 
   const handleDelete = (list) => {
     let filtered = formList.filter((formList) => formList !== list);
     setFormList(filtered);
+    console.log(filtered);
   };
 
   return (
@@ -112,8 +95,8 @@ export default function Home() {
               name="title"
               placeholder="Title"
               className="input"
-              onChange={handleChangeTitle}
-              value={inputTitle}
+              onChange={handleChange}
+              value={userInput.title}
             />
           </p>
           <p>
@@ -122,8 +105,8 @@ export default function Home() {
               name="quantity"
               placeholder="Quantity"
               className="input"
-              onChange={handleChangeQuantity}
-              value={inputQuantity}
+              onChange={handleChange}
+              value={userInput.quantity}
             />
           </p>
           <p>
@@ -132,8 +115,8 @@ export default function Home() {
               name="price"
               placeholder="Price"
               className="input"
-              onChange={handleChangePrice}
-              value={inputPrice}
+              onChange={handleChange}
+              value={userInput.price}
             />
           </p>
           <button type="button" onClick={handleSubmit} className="button">
@@ -144,9 +127,9 @@ export default function Home() {
       <Header />
       <FormList
         list={list}
+        formList={formList}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
-        formList={formList}
       />
     </div>
   );
