@@ -1,20 +1,15 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.scss";
-import Form from "../components/form";
 import React, { useState } from "react";
 import FormList from "../components/formlist";
 import data from "../data-dummy/data.json";
 import Header from "../components/header";
 import list from "../components/list";
-import List from "../components/list";
-import { uid } from "uid";
 
 export default function Home() {
   const [formList, setFormList] = useState(data);
 
   const [isUpdate, setIsUpdate] = useState({ id: null, status: false });
-
   const [userInput, setUserInput] = useState({
     title: "",
     quantity: "",
@@ -70,7 +65,7 @@ export default function Home() {
       price: list.price,
     });
     setIsUpdate({ id: list.id, status: true });
-    console.log(list.id);
+    console.log(list);
   };
 
   const handleDelete = (list) => {

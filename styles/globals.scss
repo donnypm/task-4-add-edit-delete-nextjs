@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,800,800i,900i&display=swap");
 
-$bg-color: #82c0e1;
+$primary-color: #82c0e1;
 $font-fam: "Arial";
-$height-btn-action: 30px;
-$border-radius: 8px;
+$height-btn: 30px;
+$border-radius: 5px;
 
 html,
 body {
@@ -14,6 +14,7 @@ body {
 .content {
   max-width: 960px;
   margin: 0 auto;
+  font-family: $font-fam;
 }
 a {
   color: inherit;
@@ -42,10 +43,14 @@ a {
 .input {
   width: 400px;
   height: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $primary-color;
+  border-radius: $border-radius;
 }
 
 .button {
-  background-color: $bg-color;
+  background-color: $primary-color;
   border: none;
   color: rgb(10, 10, 10);
   border-radius: 0.5rem;
@@ -54,12 +59,12 @@ a {
   display: inline-block;
   font-size: 16px;
   width: 400px;
-  height: 30px;
+  height: $height-btn;
   cursor: pointer;
 }
 
 .h1header {
-  color: $bg-color;
+  color: $primary-color;
 }
 
 .list {
@@ -76,8 +81,8 @@ a {
 }
 
 .button-edit {
-  background-color: $bg-color;
-  height: $height-btn-action;
+  background-color: $primary-color;
+  height: $height-btn;
   width: 50px;
   border-radius: $border-radius;
   border: none;
@@ -87,7 +92,7 @@ a {
 .button-delete {
   color: #f6f6f6;
   background-color: #c05662;
-  height: $height-btn-action;
+  height: $height-btn;
   width: 70px;
   border-radius: $border-radius;
   border: none;
