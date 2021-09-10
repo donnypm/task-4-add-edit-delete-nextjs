@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormList from "../components/formlist";
 import data from "../data-dummy/data.json";
 import Header from "../components/header";

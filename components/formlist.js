@@ -11,6 +11,7 @@ const FormList = (props) => {
             list={list}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
+            key={list.id}
           />
         );
       })}
