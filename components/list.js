@@ -5,9 +5,11 @@ const List = (props) => {
   return (
     <div>
       <div className="list">
-        {list.title} <br />
-        {list.quantity} <br />
-        {list.price}
+        <div className="p-list">
+          <p className="list-title">{list.title} </p>
+          <p>{list.quantity} </p>
+          <p>{list.price}</p>
+        </div>
         <div className="button-list">
           <button onClick={() => handleEdit(list)} className="button-edit">
             Edit

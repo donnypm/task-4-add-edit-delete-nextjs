@@ -103,6 +103,13 @@ a {
   cursor: pointer;
 }
 
+.p-list {
+  line-height: 5px;
+}
+
+.list-title {
+  font-weight: bold;
+}
 .search {
   width: 100%;
   position: relative;
@@ -110,7 +117,8 @@ a {
 }
 
 .searchTerm {
-  width: 50%;
+  font-size: 16px;
+  width: 100%;
   border: 3px solid $primary-color;
   padding: 5px;
   height: 30px;

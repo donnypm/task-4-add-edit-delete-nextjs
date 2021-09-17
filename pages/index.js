@@ -74,6 +74,18 @@ export default function Home() {
     console.log(filtered);
   };
 
+  // UNTUK MEMBUAT LOCALSTORAGE
+  useEffect(() => {
+    const localData = localStorage.getItem("formList");
+    if (localData) {
+      setFormList(JSON.parse(localData));
+    }
+  }, data);
+
+  useEffect(() => {
+    localStorage.setItem("formList", JSON.stringify(formList));
+  }, [formList]);
+
   return (
     <div className="content">
       <Head>
