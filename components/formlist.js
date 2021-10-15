@@ -16,7 +16,7 @@ const FormList = (props) => {
         <input
           name={inputSearch}
           type="text"
-          placeholder="Search Title Here..."
+          placeholder="Search Title or Quantity or Price Here..."
           onChange={handleChange}
           value={inputSearch}
           className="searchTerm"
@@ -28,7 +28,9 @@ const FormList = (props) => {
           if (inputSearch === "") {
             return list;
           } else if (
-            list.title.toLowerCase().includes(inputSearch.toLowerCase())
+            (list.title.toLowerCase().includes(inputSearch.toLowerCase()),
+            list.quantity.toLowerCase().includes(inputSearch.toLowerCase()),
+            list.price.toLowerCase().includes(inputSearch.toLowerCase()))
           ) {
             return list;
           }
